@@ -1,0 +1,148 @@
+React
+
+Kinda the V of MVC,
+aka Web UIs the Right Way ?,
+aka Functional Web UIs
+===
+Disclaimer :
+
+This talk is greatly "inspired"* from React Lead developer's video : https://www.youtube.com/watch?v=x7cQ3mrcKaY
+
+* mostly and shamelessy copied
+===
+Plan
+
+Design of React :
+Separation of concerns
+Components oriented
+Rendering concept
+
+Going further (if time permits)
+===
+Best pratice :
+Separate your template (Handlebars, Angular.js template, all HTML-like languages) and your "view model" (Backbone View, Angular.js directive, all display-oriented JS code)
+===
+But : they both show the UI !
+Display logic and markup are highly cohesive.
+===
+Separation of concerns :
+
+"Reduce coupling, increase cohesion"
+===
+Templates separate technologies, not concerns. And they're underpowered (pseudo-programming languages, poor reusability...)
+===
+What's reusable ? A component !
+===
+Example code :
+
+var CommentBox = React.createClass({
+  render: function() {
+    return (
+      React.DOM.div({
+        className: 'commentBox',
+        children: 'Hello, world! I am a CommentBox.'
+      })
+    );
+  }
+});
+React.renderComponent(
+  CommentBox({}),
+  document.getElementById('content')
+);
+===
+A better syntax for it, JSX :
+
+var CommentBox = React.createClass({
+  render: function() {
+    return (
+      <div className="commentBox">
+        Hello, world! I am a CommentBox.
+      </div>
+    );
+  }
+});
+React.renderComponent(
+  <CommentBox />,
+  document.getElementById('content')
+);
+===
+JSX is *completely optional*
+===
+Managing state in Web UI is hard.
+Data state, user input, complex interactions, etc.
+===
+No, managing state in *programming* is hard
+===
+In the 90s, it was easier.
+
+Just refresh the page when the data changes !
+===
+React re-renders the entire component.
+===
+aka : React components are just idempotent functions.
+
+They *describe* your UI at __any point in time__ just like the server-rendered app
+===
+Everything is declarative
+
+var Counter = React.createClass({
+  getInitialState: function() {
+    return {
+        counts: this.props.initialCounts || 0
+    }
+  },
+  handleClick: function(e) {
+    this.setState({
+        counts. this.state.counts + 1
+    });
+  },
+  render: function() {
+    return (
+        <button onClick={this.handleClick}>Clicked {this.state.counts}</button>
+    );
+  }
+});
+React.renderComponent(
+  <Counter initialCounts={5} />,
+  document.getElementById('counter')
+);
+===
+Re-rendering ? Expensive and inefficient !
+
+"And doesn't it mess up form fields and scroll position ?"
+===
+Indeed, the DOM is slow.
+
+Meet the virtual DOM.
+===
+On every update :
+
+- React buils a new virtual DOM subtree
+- ... diffs it with the old one
+- ... computes the minimal set of DOM mutations and puts them in a queue
+- ... and batch executes all updates
+===
+Diff is super fast because :
+- it's working pure Javascript data structures, not the slow DOM
+- the algorithm used is O(n)
+===
+Virtual DOM also allows for :
+- unit testable components
+- rendering in Node.js (then the browser takes over)
+- rendering SVG, VML and Canvas
+- delegating the render process in a Web Worker
+===
+MVC ? Not necessarily
+
+Facebook "Flux" pattern : one way data flow
+Common in functional programming (the pipeline)
+===
+Persistent and immutable data structures
+
+Makes diff even faster (http://swannodette.github.io/todomvc/labs/architecture-examples/om/index.html VS http://swannodette.github.io/todomvc/architecture-examples/backbone/index.html)
+
+Look at Om (ClojureScript wrapper over React.js) or mori (ClojureScript's persistent data structures ported to Javascript).
+
+https://github.com/swannodette/om
+https://github.com/swannodette/mori
+===
