@@ -102,7 +102,7 @@ var Counter = React.createClass({
   },
   render: function() {
     return (
-        <button onClick={this.handleClick}>Clicked {this.state.counts}</button>
+        <button onClick={this.handleClick}>Clicked {this.state.counts} times</button>
     );
   }
 });
