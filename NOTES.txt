@@ -3,6 +3,10 @@ React
 Kinda the V of MVC,
 aka Web UIs the Right Way ?,
 aka Functional Web UIs
+
+Khalid Jebbari
+aka DjebbZ, @Dj3bbZ
+Paris.js #36 @ Devoxx, April 17th 2014
 ===
 Disclaimer :
 
@@ -146,3 +150,8 @@ Look at Om (ClojureScript wrapper over React.js) or mori (ClojureScript's persis
 https://github.com/swannodette/om
 https://github.com/swannodette/mori
 ===
+That's all folks !
+
+Questions ?
+
+Slides here : https://github.com/DjebbZ/react-paris-js
