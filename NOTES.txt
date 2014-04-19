@@ -7,12 +7,47 @@ aka Functional Web UIs
 Khalid Jebbari
 aka DjebbZ, @Dj3bbZ
 Paris.js #36 @ Devoxx, April 17th 2014
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 Disclaimer :
 
 This talk is greatly "inspired"* from React Lead developer's video : https://www.youtube.com/watch?v=x7cQ3mrcKaY
 
 * mostly and shamelessy copied
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 Plan
 
@@ -22,20 +57,122 @@ Components oriented
 Rendering concept
 
 Going further (if time permits)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 Best pratice :
 Separate your template (Handlebars, Angular.js template, all HTML-like languages) and your "view model" (Backbone View, Angular.js directive, all display-oriented JS code)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 But : they both show the UI !
 Display logic and markup are highly cohesive.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 Separation of concerns :
 
 "Reduce coupling, increase cohesion"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 Templates separate technologies, not concerns. And they're underpowered (pseudo-programming languages, poor reusability...)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 What's reusable ? A component !
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 Example code :
 
@@ -53,6 +190,23 @@ React.renderComponent(
   CommentBox({}),
   document.getElementById('content')
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 A better syntax for it, JSX :
 
@@ -69,23 +223,142 @@ React.renderComponent(
   <CommentBox />,
   document.getElementById('content')
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 JSX is *completely optional*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 Managing state in Web UI is hard.
 Data state, user input, complex interactions, etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 No, managing state in *programming* is hard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 In the 90s, it was easier.
 
 Just refresh the page when the data changes !
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 React re-renders the entire component.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 aka : React components are just idempotent functions.
 
 They *describe* your UI at __any point in time__ just like the server-rendered app
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 Everything is declarative
 
@@ -110,14 +383,65 @@ React.renderComponent(
   <Counter initialCounts={5} />,
   document.getElementById('counter')
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 Re-rendering ? Expensive and inefficient !
 
 "And doesn't it mess up form fields and scroll position ?"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 Indeed, the DOM is slow.
 
 Meet the virtual DOM.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 On every update :
 
@@ -125,21 +449,90 @@ On every update :
 - ... diffs it with the old one
 - ... computes the minimal set of DOM mutations and puts them in a queue
 - ... and batch executes all updates
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 Diff is super fast because :
 - it's working pure Javascript data structures, not the slow DOM
 - the algorithm used is O(n)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 Virtual DOM also allows for :
 - unit testable components
 - rendering in Node.js (then the browser takes over)
+- Holy Grail (similar to AirBnB's Rendr)
 - rendering SVG, VML and Canvas
 - delegating the render process in a Web Worker
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 MVC ? Not necessarily
 
 Facebook "Flux" pattern : one way data flow
 Common in functional programming (the pipeline)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 Persistent and immutable data structures
 
@@ -149,6 +542,23 @@ Look at Om (ClojureScript wrapper over React.js) or mori (ClojureScript's persis
 
 https://github.com/swannodette/om
 https://github.com/swannodette/mori
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ===
 That's all folks !
 
